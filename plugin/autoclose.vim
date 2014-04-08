@@ -117,7 +117,6 @@ fun! <SID>AutoCloseMappingsOff() " {{{2
         iunmap <C-h>
         iunmap <Del>
         iunmap <Esc>
-        iunmap `
         iunmap {<CR>
         let s:autoclose_mapped = 0
         echo "AutoClose Off"
@@ -192,7 +191,7 @@ function! <SID>CloseStackPop(char, pair) " ---{{{2
     if(a:char == '')
         silent! pclose
     endif
-    echom len(s:closeStack)
+    "echom len(s:closeStack)
     if len(s:closeStack) == 0
         return <SID>JumpOut(a:char, a:pair)
     endif
