@@ -6,8 +6,12 @@ Using this script, typing ``(`` will result in (|), where | is the cursor positi
 
 The paired characters are: [, (, {, ", '
 
-Note: in Vim files (including .vimrc), you may not want pairing of " because it is the comment character. If you set a value for g:autoclose_vim_commentmode, the " character will not be paired if Vim considers the current buffer to be a Vim file.
+Note: in Vim files (including .vimrc), you may not want pairing of double quotes because it is the comment character. You can just provide all such filetypes where pairing should be ignored:
 
-    let g:autoclose_vim_commentmode = 1
+    let g:autoclose_no_dquote = ['vim']
+
+Similarly, for single quotes:
+
+    let g:autoclose_no_squote = ['clojure', 'rust']
 
 If you like this script, you should also check out surround.vim

@@ -224,9 +224,15 @@ function! <SID>CloseStackPop(char, pair) " ---{{{2
 endf
 
 function! <SID>QuoteDelim(char) " ---{{{2
-  " If this is a Vim file, and user has requested it, do not pair double-quote
-  if (a:char == '"' && exists("g:autoclose_vim_commentmode") && exists("b:current_syntax") && b:current_syntax == "vim")
-    return '"'
+  if exists("b:current_syntax")
+    if (a:char == "'" && exists("g:autoclose_no_squote")
+        \ && index(g:autoclose_no_squote, b:current_syntax) >= 0)
+      return "'"
+    endif
+    if (a:char == '"' && exists("g:autoclose_no_dquote")
+        \ && index(g:autoclose_no_dquote, b:current_syntax) >= 0)
+      return '"'
+    endif
   endif
   let line = getline('.')
   let col = col('.')
